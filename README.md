@@ -6,4 +6,4 @@ The little guy is controlled using [paddle controls](https://en.wikipedia.org/wi
 
 Unfortunately, a limitation of the paddle controller is that it cannot be spun around indefinitely. This means the little guy cannot go 'round and 'round his planet. He can move clockwise from the top-left corner of his planet until he reaches that corner again. From there, he must move counter-clockwise to get back to the top side.
 
-To play, simply download the binary from Releases, and run it in your preferred emulator.
+To play, simply download the binary from Releases, and run it in your preferred emulator. The paddle button starts the game, and spinning the paddle moves the little guy. Using default settings for Stella, these should be mapped to left click and mouse movement respectively.

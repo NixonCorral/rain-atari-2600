@@ -70,6 +70,9 @@ __Start_Restart
     missile1y = 200
     missile1height = 4
 
+    ; require the paddle button to be pressed to start the game
+    dim _game_started = w
+
  ; Xs are playfield color (green) and dots are background color (black)
  playfield:
 ................................ 
@@ -121,6 +124,10 @@ end
     ; missile 1 is two pixels wide and there is only one of them
     NUSIZ1 = $10
     drawscreen
+
+    ; joy0right acts as the paddle button when using paddles
+    if joy0right then _game_started = 1
+    if _game_started = 0 then goto gameloop
 
     ; use the paddle location to move a guy around a square
     if paddle < 19 then player0x = paddle + bumpx : player0y = 0 + bumpy
@@ -219,8 +226,9 @@ __Move_Ball
     goto __Start_Restart
 
 gameover_loop
- drawscreen
- ; do an annoying buzzing sound forever when you die
- AUDC0 = 2 : AUDV0 = 8 : AUDF0 = 0
- if joy0fire || switchreset then goto __Start_Restart
- goto gameover_loop
+    drawscreen
+    ; do an annoying buzzing sound forever when you die
+    AUDC0 = 2 : AUDV0 = 8 : AUDF0 = 0
+    ; joy0right is used as the paddle button when using paddles
+    if joy0right || switchreset then goto __Start_Restart
+    goto gameover_loop
